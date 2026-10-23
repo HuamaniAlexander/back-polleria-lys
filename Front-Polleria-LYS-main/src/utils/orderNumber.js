@@ -4,12 +4,17 @@ export function generateOrderNumber() {
 
 export function formatCodigoPedido(id) {
   if (!id) return '';
-  const str = String(id).trim();
-  if (str.length >= 20 && str.includes('-')) {
-    return `Pedido #${str.slice(0, 8).toUpperCase()}`;
+  let str = String(id).trim();
+  if (str.startsWith('Pedido #')) {
+    str = str.slice(8).trim();
+  } else if (str.startsWith('Pedido')) {
+    str = str.replace(/^Pedido\s*/, '').trim();
+  } else if (str.startsWith('#')) {
+    str = str.slice(1).trim();
   }
-  if (str.startsWith('Pedido') || str.startsWith('LS-') || str.startsWith('#')) {
-    return str;
+
+  if (str.length >= 20 && (str.includes('-') || /^[0-9a-fA-F]{20,}$/.test(str))) {
+    return `Pedido #${str.slice(0, 8).toUpperCase()}`;
   }
   return `Pedido #${str}`;
 }

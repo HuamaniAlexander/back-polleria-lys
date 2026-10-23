@@ -37,30 +37,28 @@ export default function DeliveryForm({ deliveryType, form, errors, onTypeChange,
           {errors.name && <span className="checkout-field-error">{errors.name}</span>}
         </label>
         {deliveryType === 'delivery' && (
-          <>
-            <label className="checkout-field-label">
-              Dirección de entrega
-              <input
-                className={`lys-input ${errors.address ? 'err' : ''}`}
-                value={form.address}
-                onChange={(event) => onFormChange('address', event.target.value)}
-                placeholder="Av. Ejemplo 123, distrito"
-                maxLength={50}
-              />
-              {errors.address && <span className="checkout-field-error">{errors.address}</span>}
-            </label>
-            <label className="checkout-field-label">
-              Referencia (opcional)
-              <input
-                className="lys-input"
-                value={form.reference}
-                onChange={(event) => onFormChange('reference', event.target.value)}
-                placeholder="Ej. frente al parque, edificio azul"
-                maxLength={50}
-              />
-            </label>
-          </>
+          <label className="checkout-field-label">
+            Dirección de entrega
+            <input
+              className={`lys-input ${errors.address ? 'err' : ''}`}
+              value={form.address}
+              onChange={(event) => onFormChange('address', event.target.value)}
+              placeholder="Av. Ejemplo 123, distrito"
+              maxLength={50}
+            />
+            {errors.address && <span className="checkout-field-error">{errors.address}</span>}
+          </label>
         )}
+        <label className="checkout-field-label">
+          Comentarios u observaciones sobre tu pedido (opcional)
+          <input
+            className="lys-input"
+            value={form.reference}
+            onChange={(event) => onFormChange('reference', event.target.value)}
+            placeholder="Ej. Sin ensalada, cremas aparte, no picante, timbre malogrado..."
+            maxLength={100}
+          />
+        </label>
         <label className="checkout-field-label">
           Teléfono de contacto
           <input

@@ -20,10 +20,17 @@ export default function OrderDeliveryInfo({ order }) {
         <MapPin size={16} color="var(--ember)" />
         <span>
           {deliveryType === 'delivery'
-            ? `${form.address}${form.reference ? ` (${form.reference})` : ''}`
+            ? form.address
             : 'Recojo en tienda'}
         </span>
       </div>
+      {form.reference && (
+        <div className="delivery-info-row">
+          <span>
+            <strong>Observaciones:</strong> {form.reference}
+          </span>
+        </div>
+      )}
       <div className="delivery-info-row">
         <CreditCard size={16} color="var(--ember)" />
         <span>{PAYMENT_LABELS[payment] || payment}</span>

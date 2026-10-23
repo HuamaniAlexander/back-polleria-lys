@@ -31,7 +31,12 @@ export default function OrderSummary({ items, subtotal, shipping, total, deliver
         <div>
           <strong>Entrega:</strong> {form.name} · {form.phone}
         </div>
-        <div>{deliveryType === 'delivery' ? `${form.address}${form.reference ? ` (${form.reference})` : ''}` : 'Recojo en tienda'}</div>
+        <div>{deliveryType === 'delivery' ? form.address : 'Recojo en tienda'}</div>
+        {form.reference && (
+          <div>
+            <strong>Observaciones:</strong> {form.reference}
+          </div>
+        )}
         <div>
           <strong>Pago:</strong>{' '}
           {payment === 'efectivo' && 'Efectivo'}
